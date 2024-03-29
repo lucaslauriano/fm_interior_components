@@ -1,2 +1,2 @@
-# fm_interior_components
-A Sketchup React.js plugin for interiors scenes.
+# FM Interior Components
+A Sketchup React.js plugin for interior scenes.
