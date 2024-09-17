@@ -408,11 +408,11 @@ module Cena_arq
 
         #duplicar Base e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('arq')
             
@@ -470,11 +470,11 @@ module Cena_mobi
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == ''base'' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == ''base'' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('mobi')
             
@@ -524,11 +524,11 @@ module Cena_construir
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == ''base'' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == ''base'' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('construir')
             
@@ -586,11 +586,11 @@ module Cena_demolir
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('demolir')
             
@@ -647,11 +647,11 @@ module Cena_layout
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'layout' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'layout' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('base')
             
@@ -708,11 +708,11 @@ module Cena_pontostec
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-        model.pages.selected_page = cena_layout
+        model.pages.selected_page = cena_base
             
         cena = Sketchup.active_model.pages.add('tecnico')
 
@@ -773,11 +773,11 @@ module Cena_eletricos
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-        model.pages.selected_page = cena_layout
+        model.pages.selected_page = cena_base
             
         cena = Sketchup.active_model.pages.add('eletrico')
 
@@ -839,11 +839,11 @@ module Cena_hidro
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-        model.pages.selected_page = cena_layout
+        model.pages.selected_page = cena_base
             
         cena = Sketchup.active_model.pages.add('hidro')
 
@@ -908,11 +908,11 @@ module Cena_climatizacao
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-        model.pages.selected_page = cena_layout
+        model.pages.selected_page = cena_base
             
         cena = Sketchup.active_model.pages.add('clima')
 
@@ -975,11 +975,11 @@ module Cena_iluminacao
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-        model.pages.selected_page = cena_layout
+        model.pages.selected_page = cena_base
             
         cena = Sketchup.active_model.pages.add('iluminacao')
 
@@ -1099,11 +1099,11 @@ module Cena_piso
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('reves')
             
@@ -1158,11 +1158,11 @@ module Cena_marcenaria
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('marcenaria')
             
@@ -1217,11 +1217,11 @@ module Cena_marmoraria
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('marmoraria')
             
@@ -1269,11 +1269,11 @@ module Isolar_marcenaria
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('isolar')
             
@@ -1657,10 +1657,10 @@ module Cena_cortes_tec
 
     def self.corte_tec(corte, nome)
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == corte }
+        cena_base = model.pages.find { |cena| cena.name.downcase == corte }
     
-        if cena_layout
-            model.pages.selected_page = cena_layout
+        if cena_base
+            model.pages.selected_page = cena_base
     
             page = Sketchup.active_model.pages.add(nome)
                 
