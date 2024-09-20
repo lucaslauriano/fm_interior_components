@@ -1974,11 +1974,6 @@ criar_botao_extension(toolbar, 'Exibe/Oculta Portas Marcenaria', Hide_door.metho
 
 criar_botao_extension(toolbar, 'Alterna Perspectiva Isometrica', PerspectiveToggle.method(:activate_extension), 'iso','Alterna automaticamente a pespectiva isometrica do desenho')
 
-
-toolbar.add_separator
-
-criar_botao_extension(toolbar, 'Usar com Xref', Cena_xref.method(:activate_extension), 'xref','Transforma a cena selecionada em Xref para sobrepor dentro do Layout.')
-
 toolbar.add_separator
 
 criar_botao_extension(toolbar, 'Cena Imagens', Cena_imagem_inicial.method(:activate_extension), 'imagem','Abre uma cena para renderizar.')
