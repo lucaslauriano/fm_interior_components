@@ -19,6 +19,7 @@ module Camadas_padrao
         '-2D-ESQUADRIA',
         '-2D-MOBILIARIO',
         '-2D-LEGENDA ESQUADRIA',
+        '-2D-LEGENDA CORTES',
         '-2D-XREF',
         '-2D-LEGENDA AMBIENTE',
         
@@ -375,7 +376,7 @@ module Cena_base
 
         cena.update
 
-        grupos_ocultar = ["TETO", "COBERTURA",'ADORNO','ILUMINACAO','AEREO','TECNICO','ESCALA','EXTERNO','XREF','CIVIL','RODAPE','OUTRO']
+        grupos_ocultar = ['2D',"MARMORARIA","MARCENARIA","INTERIORES","BANHEIRO","PISO","LEGENDA","TETO", "COBERTURA",'ADORNO','ILUMINACAO','AEREO','TECNICO','ESCALA','EXTERNO','XREF','CIVIL','RODAPE','OUTRO']
         camadas.each do |camada|
             camada.visible = false if grupos_ocultar.any? { |item| camada.name.include?(item) }
         end
@@ -408,11 +409,11 @@ module Cena_arq
 
         #duplicar Base e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('arq')
             
@@ -470,11 +471,11 @@ module Cena_mobi
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == ''base'' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('mobi')
             
@@ -524,11 +525,11 @@ module Cena_construir
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == ''base'' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('construir')
             
@@ -539,7 +540,7 @@ module Cena_construir
 
             cena.update
 
-            grupos_ocultar = ['ARQUITETURA','BANHEIRO',"TETO", "COBERTURA",'ADORNO','ILUMINACAO','AEREO','TECNICO',
+            grupos_ocultar = ['2D','ARQUITETURA','BANHEIRO',"TETO", "COBERTURA",'ADORNO','ILUMINACAO','AEREO','TECNICO',
             'ESCALA','EXTERNO','XREF','RODAPE','MARCENARIA','MARMORARIA','INTERIORES','INTERIORES','EXTERIOR','OUTRO']
             camadas.each do |camada|
                 camada.visible = false if grupos_ocultar.any? { |item| camada.name.include?(item) }
@@ -586,11 +587,11 @@ module Cena_demolir
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('demolir')
             
@@ -601,7 +602,7 @@ module Cena_demolir
 
             cena.update
 
-            grupos_ocultar = ['ARQUITETURA','BANHEIRO',"TETO", "COBERTURA",'ESCALA','ADORNO','ILUMINACAO','AEREO','TECNICO','ESCALA','EXTERNO','XREF','RODAPE','MARCENARIA','MARMORARIA','INTERIORES','INTERIORES','EXTERIOR','OUTRO']
+            grupos_ocultar = ['2D','ARQUITETURA','BANHEIRO',"TETO", "COBERTURA",'ESCALA','ADORNO','ILUMINACAO','AEREO','TECNICO','ESCALA','EXTERNO','XREF','RODAPE','MARCENARIA','MARMORARIA','INTERIORES','INTERIORES','EXTERIOR','OUTRO']
             camadas.each do |camada|
                 camada.visible = false if grupos_ocultar.any? { |item| camada.name.include?(item) }
             end
@@ -647,13 +648,13 @@ module Cena_layout
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'layout' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
-            page = Sketchup.active_model.pages.add('base')
+            page = Sketchup.active_model.pages.add('layout')
             
             #todas camadas visiveis
             cena = Sketchup.active_model.pages.selected_page
@@ -662,16 +663,16 @@ module Cena_layout
 
             cena.update
 
-            grupos_ocultar = ["TETO", "BANHEIRO","COBERTURA",'ADORNO','ILUMINACAO','AEREO','TECNICO','2D','ESCALA','EXTERNO','XREF','CIVIL','RODAPE','MARCENARIA','MARMORARIA','INTERIORES','INTERIORES','EXTERIOR','OUTRO']
+            grupos_ocultar = ['ADORNO','AEREO',"TETO","COBERTURA",'ADORNO','ILUMINACAO','AEREO','TECNICO','EXTERNO','XREF','CIVIL','EXTERIOR','OUTRO']
             camadas.each do |camada|
                 camada.visible = false if grupos_ocultar.any? { |item| camada.name.include?(item) }
             end
             cena.update
 
-            camadas_ocultas = ['-ARQUITETURA-PISO']
+            camadas_ocultas = ['-ILUMINACAO-LUMINARIA']
             camadas_ocultas.each do |nome_camada|
                 camada = camadas.find { |c| c.name == nome_camada }
-                camada.visible = false if camada
+                camada.visible = true if camada
             end
             cena.update
 
@@ -708,11 +709,11 @@ module Cena_pontostec
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-        model.pages.selected_page = cena_layout
+        model.pages.selected_page = cena_base
             
         cena = Sketchup.active_model.pages.add('tecnico')
 
@@ -723,7 +724,7 @@ module Cena_pontostec
 
         cena.update
 
-        grupos_ocultar = ["TETO", "COBERTURA",'ADORNO','ILUMINACAO','AEREO','EXTERNO','XREF','CIVIL','RODAPE','MARCENARIA','MARMORARIA','INTERIORES','INTERIORES','EXTERIOR','PONTO','BANHEIRO','2D','OUTRO']
+        grupos_ocultar = ['2D',"TETO", "COBERTURA",'ADORNO','ILUMINACAO','AEREO','EXTERNO','XREF','CIVIL','RODAPE','MARCENARIA','MARMORARIA','INTERIORES','INTERIORES','EXTERIOR','PONTO','BANHEIRO','2D','OUTRO']
         camadas.each do |camada|
             camada.visible = false if grupos_ocultar.any? { |item| camada.name.include?(item) }
         end
@@ -773,11 +774,11 @@ module Cena_eletricos
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-        model.pages.selected_page = cena_layout
+        model.pages.selected_page = cena_base
             
         cena = Sketchup.active_model.pages.add('eletrico')
 
@@ -788,7 +789,7 @@ module Cena_eletricos
 
         cena.update
 
-        grupos_ocultar = ["TETO", "COBERTURA",'ADORNO','AEREO','EXTERNO','XREF','CIVIL','RODAPE','MARCENARIA',
+        grupos_ocultar = ['2D',"TETO", "COBERTURA",'ADORNO','AEREO','EXTERNO','XREF','CIVIL','RODAPE','MARCENARIA',
         'MARMORARIA','INTERIORES','EXTERIOR','PONTO','BANHEIRO','2D','OUTRO','HACHURA','LUMINARIA','SPOTLIGTH']
         camadas.each do |camada|
             camada.visible = false if grupos_ocultar.any? { |item| camada.name.include?(item) }
@@ -839,11 +840,11 @@ module Cena_hidro
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-        model.pages.selected_page = cena_layout
+        model.pages.selected_page = cena_base
             
         cena = Sketchup.active_model.pages.add('hidro')
 
@@ -854,7 +855,7 @@ module Cena_hidro
 
         cena.update
 
-        grupos_ocultar = ["TETO", "COBERTURA",'ADORNO','ILUMINACAO','AEREO','EXTERNO','XREF','CIVIL','RODAPE',
+        grupos_ocultar = ['2D',"TETO", "COBERTURA",'ADORNO','ILUMINACAO','AEREO','EXTERNO','XREF','CIVIL','RODAPE',
         'MARCENARIA','MARMORARIA','INTERIORES','INTERIORES','EXTERIOR','PONTO','BANHEIRO','2D','OUTRO']
         camadas.each do |camada|
             camada.visible = false if grupos_ocultar.any? { |item| camada.name.include?(item) }
@@ -908,11 +909,11 @@ module Cena_climatizacao
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-        model.pages.selected_page = cena_layout
+        model.pages.selected_page = cena_base
             
         cena = Sketchup.active_model.pages.add('clima')
 
@@ -923,7 +924,7 @@ module Cena_climatizacao
 
         cena.update
 
-        grupos_ocultar = ["TETO", "COBERTURA",'ADORNO','ILUMINACAO','AEREO','EXTERNO','XREF','CIVIL','RODAPE','MARCENARIA','MARMORARIA','INTERIORES','INTERIORES','EXTERIOR','PONTO','BANHEIRO','2D','OUTRO']
+        grupos_ocultar = ['2D',"TETO", "COBERTURA",'ADORNO','ILUMINACAO','AEREO','EXTERNO','XREF','CIVIL','RODAPE','MARCENARIA','MARMORARIA','INTERIORES','INTERIORES','EXTERIOR','PONTO','BANHEIRO','2D','OUTRO']
         camadas.each do |camada|
             camada.visible = false if grupos_ocultar.any? { |item| camada.name.include?(item) }
         end
@@ -975,11 +976,11 @@ module Cena_iluminacao
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-        model.pages.selected_page = cena_layout
+        model.pages.selected_page = cena_base
             
         cena = Sketchup.active_model.pages.add('iluminacao')
 
@@ -1099,11 +1100,11 @@ module Cena_piso
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('reves')
             
@@ -1158,11 +1159,11 @@ module Cena_marcenaria
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('marcenaria')
             
@@ -1217,11 +1218,11 @@ module Cena_marmoraria
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('marmoraria')
             
@@ -1232,7 +1233,7 @@ module Cena_marmoraria
 
             cena.update
 
-            grupos_ocultar = ["TETO",'BANHEIRO', "COBERTURA",'ESCALA','ADORNO','ILUMINACAO','AEREO','TECNICO','ESCALA','EXTERNO','XREF','CIVIL','RODAPE','INTERIORES','INTERIORES','EXTERIOR','OUTRO','MARCENARIA']
+            grupos_ocultar = ['2D',"TETO",'BANHEIRO', "COBERTURA",'ESCALA','ADORNO','ILUMINACAO','AEREO','TECNICO','ESCALA','EXTERNO','XREF','CIVIL','RODAPE','INTERIORES','INTERIORES','EXTERIOR','OUTRO','MARCENARIA']
             camadas.each do |camada|
                 camada.visible = false if grupos_ocultar.any? { |item| camada.name.include?(item) }
             end
@@ -1269,11 +1270,11 @@ module Isolar_marcenaria
 
         #duplicar layout e criar novo
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == 'base' }
+        cena_base = model.pages.find { |cena| cena.name.downcase == 'base' }
 
-        if cena_layout
+        if cena_base
 
-            model.pages.selected_page = cena_layout
+            model.pages.selected_page = cena_base
                 
             page = Sketchup.active_model.pages.add('isolar')
             
@@ -1657,10 +1658,10 @@ module Cena_cortes_tec
 
     def self.corte_tec(corte, nome)
         model = Sketchup.active_model
-        cena_layout = model.pages.find { |cena| cena.name.downcase == corte }
+        cena_base = model.pages.find { |cena| cena.name.downcase == corte }
     
-        if cena_layout
-            model.pages.selected_page = cena_layout
+        if cena_base
+            model.pages.selected_page = cena_base
     
             page = Sketchup.active_model.pages.add(nome)
                 
@@ -1808,6 +1809,79 @@ module Cena_detalhamento
     end
 end
 
+module Hide_door
+
+    def self.activate_extension
+
+        model = Sketchup.active_model
+        entities = model.active_entities
+
+         # Obter a lista de camadas
+        camadas = model.layers
+
+        # Obter a cena atual
+        cena = model.pages.selected_page
+
+        # Verificar se a camada '-MARCENARIA-PORTA' existe
+        camada_marcenaria_porta = camadas.find { |c| c.name == '-MARCENARIA-PORTA' }
+
+        # Se a camada existir, alternar a visibilidade
+        if camada_marcenaria_porta
+        if camada_marcenaria_porta.visible?
+            camada_marcenaria_porta.visible = false # Se estiver visível, ocultar
+        else
+            camada_marcenaria_porta.visible = true # Se estiver oculta, reexibir
+        end
+        end
+
+
+    end
+
+end
+
+module PerspectiveToggle
+
+    def self.activate_extension
+        model = Sketchup.active_model
+        view = model.active_view
+        
+        # Define os ângulos de câmera possíveis
+        angles = [
+          [1000, 1000, 1000],
+          [-1000, -1000, 1000],
+          [-1000, 1000, 1000],
+          [1000, -1000, 1000]
+        ]
+        
+        # Armazena o índice atual em uma variável global ou de classe para persistir entre execuções
+        @camera_index ||= 0
+        
+        # Define o próximo ângulo de câmera
+        next_index = (@camera_index + 1) % angles.length
+        next_eye = angles[next_index]
+        
+        # Define a nova câmera
+        my_camera = Sketchup::Camera.new(next_eye, [0, 0, 0], [0, 0, 1])
+        view.camera = my_camera
+        
+        # Ajusta a perspectiva
+        view.camera.perspective = false
+        
+        # Dá um zoom extents
+        view.zoom_extents
+        
+        # Atualiza a página selecionada
+        selected_page = model.pages.selected_page
+        selected_page.update if selected_page
+        
+        # Atualiza o índice da câmera
+        @camera_index = next_index
+        
+    end
+end
+
+
+
 ########################################################################################## EXTENSÃO
 
 def criar_botao_extension(toolbar, nome, ativar_metodo, icone, descricao)
@@ -1848,11 +1922,13 @@ criar_botao_extension(toolbar, 'Cortes Individuais', Cena_corte_ind.method(:acti
 
 toolbar.add_separator
 
+criar_botao_extension(toolbar, 'Base', Cena_base.method(:activate_extension), 'base','Cria uma planta base sem informações para usar como sopreposição com algumas plantas.')
+
 criar_botao_extension(toolbar, 'Layout', Cena_layout.method(:activate_extension), 'layout','Cria a planta de layout.')
 
 criar_botao_extension(toolbar, 'Arquitetura', Cena_arq.method(:activate_extension), 'arq','Cria a planta de layout.')
 
-criar_botao_extension(toolbar, 'Base Mobiliário', Cena_mobi.method(:activate_extension), 'mobi','Cria a planta de layout.')
+criar_botao_extension(toolbar, 'Mobiliário', Cena_mobi.method(:activate_extension), 'mobi','Cria a planta de layout.')
 
 toolbar.add_separator
 
@@ -1872,11 +1948,15 @@ criar_botao_extension(toolbar, 'Climatização', Cena_climatizacao.method(:activ
 
 toolbar.add_separator
 
+criar_botao_extension(toolbar, 'Revestimentos', Cena_piso.method(:activate_extension), 'revestimentos','Cria a planta de paginação de pisos.')
+
+toolbar.add_separator
+
 criar_botao_extension(toolbar, 'Iluminação', Cena_iluminacao.method(:activate_extension), 'iluminacao','Cria a planta de iluminação. Usar base para sobrepor plantas no Layout.')
 
 criar_botao_extension(toolbar, 'Forro', Cena_forro.method(:activate_extension), 'forro','Cria a planta de forro invertida.')
 
-criar_botao_extension(toolbar, 'Revestimentos', Cena_piso.method(:activate_extension), 'revestimentos','Cria a planta de paginação de pisos.')
+toolbar.add_separator
 
 criar_botao_extension(toolbar, 'Marcenaria', Cena_marcenaria.method(:activate_extension), 'marcenaria','Cria a planta de marcenaria.')
 
@@ -1890,11 +1970,14 @@ criar_botao_extension(toolbar, 'Detalhes Marcenaria', Detalhes_botao.method(:act
 
 criar_botao_extension(toolbar, 'Cena dos Detalhes de Marcenaria', Cenas_detalhes_botao.method(:activate_extension), 'cena_detalhe','Cria as cenas de acordo com os detalhes de marcenaria criadas.')
 
-criar_botao_extension(toolbar, 'Cena espefica de um grupo', Cena_detalhamento.method(:activate_extension), 'detalhe','Ao selecionar um grupo e vai ser isolado e criado automaticamente uma cena para ele')
+criar_botao_extension(toolbar, 'Cena espefica de um Grupo Isolado', Cena_detalhamento.method(:activate_extension), 'detalhe','Ao selecionar um grupo e vai ser isolado e criado automaticamente uma cena para ele')
+
+criar_botao_extension(toolbar, 'Exibe/Oculta Portas Marcenaria', Hide_door.method(:activate_extension), 'porta','Alterna automaticamente a visibilidade da camada portas de marcenaria')
+
+criar_botao_extension(toolbar, 'Alterna Perspectiva Isometrica', PerspectiveToggle.method(:activate_extension), 'iso','Alterna automaticamente a pespectiva isometrica do desenho')
+
 
 toolbar.add_separator
-
-criar_botao_extension(toolbar, 'Base', Cena_base.method(:activate_extension), 'base','Cria uma planta base sem informações para usar como sopreposição no Layout.')
 
 criar_botao_extension(toolbar, 'Usar com Xref', Cena_xref.method(:activate_extension), 'xref','Transforma a cena selecionada em Xref para sobrepor dentro do Layout.')
 
