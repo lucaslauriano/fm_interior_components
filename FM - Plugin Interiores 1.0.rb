@@ -1898,8 +1898,6 @@ end
 
 toolbar = UI::Toolbar.new('FM - AGORA VAI')
 
-criar_botao_extension(toolbar, 'Centralizar Tudo', Cenas_zoom.method(:activate_extension), 'zoom','Modelo centralizado e atualiza todas as cenas automaticamente, exceto imagens e cenas para render.')
-
 criar_botao_extension(toolbar, 'Camadas Padrão', Camadas_padrao.method(:activate_extension), 'camada','Cria as camadas padrão para o arquivo.')
 
 toolbar.add_separator
@@ -1976,13 +1974,12 @@ criar_botao_extension(toolbar, 'Exibe/Oculta Portas Marcenaria', Hide_door.metho
 
 criar_botao_extension(toolbar, 'Alterna Perspectiva Isometrica', PerspectiveToggle.method(:activate_extension), 'iso','Alterna automaticamente a pespectiva isometrica do desenho')
 
-
-toolbar.add_separator
-
-criar_botao_extension(toolbar, 'Usar com Xref', Cena_xref.method(:activate_extension), 'xref','Transforma a cena selecionada em Xref para sobrepor dentro do Layout.')
-
 toolbar.add_separator
 
 criar_botao_extension(toolbar, 'Cena Imagens', Cena_imagem_inicial.method(:activate_extension), 'imagem','Abre uma cena para renderizar.')
 
 criar_botao_extension(toolbar, 'Add Imagens', Cena_imagem.method(:activate_extension), 'ima','Abre uma cena para renderizar.')
+
+toolabar.add_separator
+
+criar_botao_extension(toolbar, 'Centralizar Tudo', Cenas_zoom.method(:activate_extension), 'zoom','Modelo centralizado e atualiza todas as cenas automaticamente, exceto imagens e cenas para render.')
